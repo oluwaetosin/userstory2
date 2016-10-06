@@ -14,6 +14,9 @@ var app = new express();
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 app.use(morgan('dev'));
+
+var api = require('./app/routes/api')(app,express);
+app.use('/api',api)
 app.get("/",function(req,res){
    res.sendFile(__dirname + "/public/views/index.html"); 
 });
